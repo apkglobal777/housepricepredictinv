@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Price Predictor</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #6c63ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #5848d1;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏠 House Price Predictor</h1>
+    <form id="priceForm">
+      <label for="area">Area (sq ft)</label>
+      <input type="number" id="area" placeholder="e.g. 1500" required />
+
+      <label for="bedrooms">Number of Bedrooms</label>
+      <input type="number" id="bedrooms" placeholder="e.g. 3" required />
+
+      <label for="bathrooms">Number of Bathrooms</label>
+      <input type="number" id="bathrooms" placeholder="e.g. 2" required />
+
+      <label for="location">Location Score (1–10)</label>
+      <input type="number" id="location" min="1" max="10" placeholder="e.g. 8" required />
+
+      <button type="submit">Predict Price</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById("priceForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const area = parseFloat(document.getElementById("area").value);
+      const bedrooms = parseInt(document.getElementById("bedrooms").value);
+      const bathrooms = parseInt(document.getElementById("bathrooms").value);
+      const location = parseFloat(document.getElementById("location").value);
+
+      // Mock price prediction formula (for demo)
+      const basePrice = 50000;
+      const price = basePrice + area * 120 + bedrooms * 10000 + bathrooms * 7000 + location * 15000;
+
+      document.getElementById("result").innerText = `Estimated Price: $${price.toLocaleString()}`;
+    });
+  </script>
+</body>
+</html>
